@@ -2,9 +2,9 @@ import React from "react";
 import {useState} from "react";
 
 function SearchBar(props) {
-
   const {onSearch} = props;
   const [searchText, setSearchText] = useState([])
+  const [filteredResults, setFilteredResults] = useState([]);
 
   const handleInput = (e) => {
     const text = e.target.value
@@ -13,7 +13,19 @@ function SearchBar(props) {
 
   const handleEnterKeyPressed = (e) => {
     if (e.key === 'Enter') {
-      onSearch(searchText)
+      let results = onSearch(searchText)
+      
+      if (searchText !== ''){
+        const filteredData = results.results.filter((item) => {
+          console.log(Object.values(item))
+          return Object.values(item).join('').toLowerCase().includes(searchText.toLowerCase())
+        })  
+        console.log(filteredData)
+        setFilteredResults(filteredData)
+      }
+      else {
+        setFilteredResults(results)
+      }
     }
   }
 
