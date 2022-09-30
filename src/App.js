@@ -1,12 +1,7 @@
-import React, { useState, Component } from 'react';
+import React, { useState } from 'react';
 import {
   ChakraProvider,
   Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
   theme,
 } from '@chakra-ui/react';
 
@@ -19,6 +14,7 @@ function App() {
   const [state, setState] = useState({
     results: []
   });
+  const [APIData, setAPIData] = useState([])
 
   const onSearch = async (text) => {
     const results = await TeamSource.get()
@@ -30,24 +26,6 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <Box textAlign="center" fontSize="xl">
-        {/* <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid> */}
         <h2>Football App</h2>
         <SearchBar onSearch={onSearch} />
         <TeamListCard results={state.results}/>
