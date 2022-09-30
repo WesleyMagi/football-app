@@ -6,7 +6,7 @@ function TeamListCard({ results }) {
     if (results.data) {
         data = results.data.teams || [];
     }
-    console.log(data)
+
     return(
         <div className="result">
             {data.map((item) => (
